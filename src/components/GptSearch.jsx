@@ -8,7 +8,6 @@ const GptSearch = () => {
         <img className="w-full h-full object-cover" src={HeroImg} alt="" />
       </div>
       <GptSearchBar />
-      {/* <GptMovieSuggestions /> */}
     </div>
   );
 };

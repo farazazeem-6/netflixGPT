@@ -1,4 +1,3 @@
-import React from "react";
 import { IMG_CDN_URL } from "../utils/Image";
 
 function MovieCard({ posterPath }) {

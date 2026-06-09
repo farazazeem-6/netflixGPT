@@ -25,7 +25,6 @@ import { addUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
-  //use state hooks
   const [isSignIn, setIsSignIn] = useState(false);
   const [isError, setIsError] = useState(null);
   const [isApiLoading, setIsApiLoading] = useState(false);
@@ -72,10 +71,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // console.log(user);
         })
         .catch((error) => {
-          // const errorCode = error.code;
           const errorMessage = error.message;
           setIsResponseError(errorMessage);
           // console.log("errorCode:", errorCode, "errorMessage:", errorMessage);
