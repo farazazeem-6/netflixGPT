@@ -1,21 +1,10 @@
 import React, { useRef } from "react";
 import { lang } from "../utils/languageConstants";
 import { useSelector } from "react-redux";
-// import openai from "../utils/openAi";
 
 const GptSearchBar = () => {
   const languageKey = useSelector((store) => store.language.lang);
   const inputRef = useRef(null);
-  //   console.log(languageKey);
-
-  //   async function handleGptSearch() {
-  //     console.log(inputRef.current.value);
-  //     const gptResults=await openai.chat.completions.create({
-  //         messages:[{}],
-  //         model:'gpt-3.5-turbo'
-  //     })
-  //     console.log(gptResults.choices);
-  //   }
 
   return (
     <div className="w-full px-4 absolute left-0 flex justify-center top-[10%] sm:top-20 md:top-24 lg:top-32">
