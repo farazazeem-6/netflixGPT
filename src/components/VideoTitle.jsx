@@ -14,7 +14,7 @@ function VideoTitle({ title, overview }) {
         </button>
         <button className="bg-gray-600 bg-opacity-70 py-1.5 sm:py-2 px-4 sm:px-5 md:px-6 text-white text-sm sm:text-base font-semibold cursor-pointer rounded hover:bg-opacity-50 flex items-center gap-1 sm:gap-2">
           <i className="ri-information-line text-lg sm:text-xl"></i>
-          More Info
+          More Info About It
         </button>
       </div>
     </div>
