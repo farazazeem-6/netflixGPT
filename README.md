@@ -1,32 +1,72 @@
-# React + Vite
+# Netflix GPT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite movie browsing app with Firebase authentication, movie browsing, and an AI-style search experience.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`netflix-gpt` is a Netflix-inspired UI built with React, Vite, Tailwind CSS, Firebase, and Redux Toolkit. The app supports user login/sign-up, authenticated browsing, movie discovery, and a GPT-style search interaction for movie recommendations.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Login / Signup flow using Firebase Authentication
+- Protected browse page after successful authentication
+- Responsive header and browse layout
+- Featured movie trailer background with title and description
+- Movie suggestions and movie list components
+- GPT-style search page for movie discovery
+- Language support and UI state management with Redux Toolkit
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Vite
+- Tailwind CSS
+- Firebase Authentication
+- Redux Toolkit
+- React Router DOM
+- Material UI icons
+- OpenAI helper code (placeholder)
 
+## Getting Started
 
-#features:
-        --Login Signup
-            --SignUp/Sign in Form
-            --redrect to browser page
-        --browse(after authentication)
-            --Header
-            --Main movie
-              --Trailer in background
-              --Title and Descryption
-              --Movie Suggestions
-                --Movie list
-        --NetflixGpt
-              --search bar
-              --movie suggestions        
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run the development server
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+## Project Structure
+
+- `src/components` — React components for login, browsing, search, and UI layout
+- `src/hooks` — Custom hooks for movie fetching and API interaction
+- `src/store` — Redux slices and application state management
+- `src/utils` — Firebase setup, API headers, constants, and OpenAI helper files
+
+## Notes
+
+- Firebase is configured in `src/utils/firebase.js`
+- The OpenAI helper in `src/utils/openAi.js` is currently commented out and can be enabled if you add a valid OpenAI API key
+- Movie API access is handled via `src/utils/constants.js`
+
+## License
+
+This project is provided as-is for learning and experimentation.
+        
