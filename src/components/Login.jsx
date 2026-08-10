@@ -75,7 +75,6 @@ const Login = () => {
         .catch((error) => {
           const errorMessage = error.message;
           setIsResponseError(errorMessage);
-          // console.log("errorCode:", errorCode, "errorMessage:", errorMessage);
         })
         .finally(() => {
           setIsApiLoading(false);
@@ -138,7 +137,6 @@ const Login = () => {
     }
 
     if (result.success) {
-      // console.log(`${provider} login successful:`, result.user);
     } else {
       setIsResponseError(result.error);
     }

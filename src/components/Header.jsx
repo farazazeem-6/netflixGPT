@@ -14,7 +14,6 @@ const Header = () => {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        console.log("Logout successful");
       })
       .catch((error) => {
         console.error("Logout error:", error);
