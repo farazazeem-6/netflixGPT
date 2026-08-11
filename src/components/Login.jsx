@@ -7,7 +7,11 @@ import {
   twitterImg,
 } from "../utils/Image";
 import { useRef, useState } from "react";
-import { emailRegex, validateSignIn, validateSignUp } from "../utils/Validations";
+import {
+  emailRegex,
+  validateSignIn,
+  validateSignUp,
+} from "../utils/Validations";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -23,6 +27,7 @@ import {
 } from "../utils/socialAuth";
 import { addUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
+import { MESSAGES } from "../utils/message";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -57,7 +62,7 @@ const Login = () => {
       : validateSignUp(
           email.current.value,
           password.current.value,
-          name.current.value
+          name.current.value,
         );
     setIsError(validationResult);
     if (validationResult) return;
@@ -66,12 +71,9 @@ const Login = () => {
       signInWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-        })
+        .then(() => {})
         .catch((error) => {
           const errorMessage = error.message;
           setIsResponseError(errorMessage);
@@ -83,24 +85,22 @@ const Login = () => {
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
-        password.current.value
+        password.current.value,
       )
-        .then((userCredential) => {
+        .then(() => {
           // Signed up
-          const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
           })
             .then(() => {
               const { uid, displayName, email } = auth.currentUser;
               dispatch(
-                addUser({ uid: uid, firstName: displayName, email: email })
+                addUser({ uid: uid, firstName: displayName, email: email }),
               );
             })
             .catch((error) => {
               setIsResponseError(error.message);
             });
-
         })
         .catch((error) => {
           // const errorCode = error.code;
@@ -136,23 +136,19 @@ const Login = () => {
         return;
     }
 
-    if (result.success) {
-    } else {
-      setIsResponseError(result.error);
-    }
-
+    setIsResponseError(result.error);
     setIsApiLoading(false);
   }
   // reset or forget password api:
 
   function resetPassword() {
     if (!email.current.value || !emailRegex.test(email.current.value)) {
-      setIsResponseError("Empty or Invalid email");
+      setIsResponseError(MESSAGES.EMPTY_INVALID_EMAIL);
     } else {
       sendPasswordResetEmail(auth, email.current.value)
         .then(() => {
           setIsResponseError(
-            "Reset Password link have been sent to your email."
+            MESSAGES.RESET_PASSWORD_SENT,
           );
         })
         .catch((error) => {
@@ -183,7 +179,7 @@ const Login = () => {
           className="flex flex-col gap-3 sm:gap-4 w-full"
         >
           <h1 className="text-[28px] sm:text-[30px] md:text-[32px] font-bold text-white text-left">
-            {isSignIn ? "Sign In" : "Sign Up"}
+            {isSignIn ? MESSAGES.SIGN_IN : MESSAGES.SIGN_UP}
           </h1>
 
           {/* name input for sign up form  */}
@@ -191,7 +187,7 @@ const Login = () => {
             <input
               ref={name}
               type="text"
-              placeholder="Full Name"
+              placeholder={MESSAGES.FULL_NAME}
               onChange={() => handleInputChange("name")}
               className="border border-[rgb(110,98,98)] mt-2 px-3 sm:px-4 py-3 sm:py-4 rounded bg-black/40 text-white placeholder-gray-400 w-full text-sm sm:text-base"
             />
@@ -206,7 +202,7 @@ const Login = () => {
           <input
             ref={email}
             type="text"
-            placeholder="Enter email"
+            placeholder={MESSAGES.ENTER_EMAIL}
             onChange={() => handleInputChange("email")}
             className="border border-[rgb(110,98,98)] mt-2 px-3 sm:px-4 py-3 sm:py-4 rounded bg-black/40 text-white placeholder-gray-400 w-full text-sm sm:text-base"
           />
@@ -220,7 +216,7 @@ const Login = () => {
           <input
             ref={password}
             type="password"
-            placeholder="Password"
+            placeholder={MESSAGES.PASSWORD}
             onChange={() => handleInputChange("password")}
             className="border border-[rgb(110,98,98)] mt-2 px-3 sm:px-4 py-3 sm:py-4 rounded bg-black/40 text-white placeholder-gray-400 w-full text-sm sm:text-base"
           />
@@ -236,7 +232,7 @@ const Login = () => {
               onClick={resetPassword}
               className="cursor-pointer underline text-white font-bold text-right text-[13px] hover:text-[#c7b4b4]"
             >
-              Forgot password?
+              {MESSAGES.FORGOT_PASSWORD}
             </p>
           )}
 
@@ -247,11 +243,11 @@ const Login = () => {
           >
             {isSignIn
               ? isApiLoading
-                ? "Signing In..."
-                : "Sign In"
+                ? MESSAGES.SIGNING_IN
+                : MESSAGES.SIGN_IN
               : isApiLoading
-              ? "Signing Up..."
-              : "Sign Up"}
+                ? MESSAGES.SIGNING_UP
+                : MESSAGES.SIGN_UP}
           </button>
           {isResponseError && (
             <p className="text-red-500 text-[12px] flex items-center">
@@ -260,12 +256,12 @@ const Login = () => {
             </p>
           )}
         </form>
-        <p className="text-[#bbb] text-center mt-3 sm:mt-4 text-sm">OR</p>
+        <p className="text-[#bbb] text-center mt-3 sm:mt-4 text-sm">{MESSAGES.OR}</p>
         <div className="grid grid-cols-4 gap-1.5 sm:gap-2 w-full">
           <div
             onClick={() => handleSocialLogin("google")}
             className="bg-black/70 py-2 px-3 sm:px-4 md:px-6 rounded-xl cursor-pointer my-2 hover:bg-black/90 hover:-translate-y-1 transition duration-500 flex justify-center"
-            title="Continue with Google"
+            title={MESSAGES.CONTINUE_WITH_GOOGLE}
           >
             <img
               className="w-[26px] sm:w-7 md:w-[30px]"
@@ -276,7 +272,7 @@ const Login = () => {
           <div
             onClick={() => handleSocialLogin("facebook")}
             className="bg-black/70 py-2 px-3 sm:px-4 md:px-6 rounded-xl cursor-pointer my-2 hover:bg-black/90 hover:-translate-y-1 transition duration-500 flex justify-center"
-            title="Continue with Facebook"
+            title={MESSAGES.CONTINUE_WITH_FACEBOOK}
           >
             <img
               className="w-[26px] sm:w-7 md:w-[30px]"
@@ -287,7 +283,7 @@ const Login = () => {
           <div
             onClick={() => handleSocialLogin("github")}
             className="bg-black/70 py-2 px-3 sm:px-4 md:px-6 rounded-xl cursor-pointer my-2 hover:bg-black/90 hover:-translate-y-1 transition duration-500 flex justify-center"
-            title="Continue with Github"
+            title={MESSAGES.CONTINUE_WITH_GITHUB}
           >
             <img
               className="w-[26px] sm:w-7 md:w-[30px]"
@@ -298,7 +294,7 @@ const Login = () => {
           <div
             onClick={() => handleSocialLogin("twitter")}
             className="bg-black/70 py-2 px-3 sm:px-4 md:px-6 rounded-xl cursor-pointer my-2 hover:bg-black/90 hover:-translate-y-1 transition duration-500 flex justify-center"
-            title="Continue with Twitter"
+            title={MESSAGES.CONTINUE_WITH_TWITTER}
           >
             <img
               className="w-[26px] sm:w-7 md:w-[30px]"
