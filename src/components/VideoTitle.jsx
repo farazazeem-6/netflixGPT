@@ -1,3 +1,5 @@
+import { MESSAGES } from "../utils/message";
+
 function VideoTitle({ title, overview }) {
   return (
     <div className="w-full h-screen absolute top-0 left-0 flex flex-col justify-center px-4 sm:px-8 md:px-12 text-white bg-linear-to-r from-black via-black/50 to-transparent">
@@ -10,11 +12,11 @@ function VideoTitle({ title, overview }) {
       <div className="flex gap-2 sm:gap-3 md:gap-4">
         <button className="bg-white py-1.5 sm:py-2 px-4 sm:px-5 md:px-6 text-black text-sm sm:text-base font-semibold cursor-pointer rounded hover:bg-opacity-80 flex items-center gap-1 sm:gap-2">
           <i className="ri-play-fill text-lg sm:text-xl"></i>
-          Play
+          {MESSAGES.PLAY}
         </button>
         <button className="bg-gray-600 bg-opacity-70 py-1.5 sm:py-2 px-4 sm:px-5 md:px-6 text-white text-sm sm:text-base font-semibold cursor-pointer rounded hover:bg-opacity-50 flex items-center gap-1 sm:gap-2">
           <i className="ri-information-line text-lg sm:text-xl"></i>
-          More Info About It
+          {MESSAGES.MORE_INFO}
         </button>
       </div>
     </div>

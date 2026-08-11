@@ -5,6 +5,7 @@ import Netflix_Logo from "../../public/Netflix_Logo.png";
 import { addGptToggle } from "../store/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLang } from "../store/languageSlice";
+import { MESSAGES } from "../utils/message";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
@@ -16,7 +17,7 @@ const Header = () => {
       .then(() => {
       })
       .catch((error) => {
-        console.error("Logout error:", error);
+        console.error(MESSAGES.LOGOUT_ERROR, error);
       });
   };
 
@@ -50,13 +51,13 @@ const Header = () => {
             onClick={handleGptSearchComp}
             className="text-white rounded-lg bg-pink-700 text-xs sm:text-sm font-semibold px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 cursor-pointer hover:bg-pink-800 whitespace-nowrap"
           >
-            {showGptSearch ? "Home Page" : "Gpt Search"}
+            {showGptSearch ? MESSAGES.HOME_PAGE : MESSAGES.GPT_SEARCH}
           </button>
           <button
             onClick={handleLogout}
             className="bg-red-600 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded text-xs sm:text-sm font-semibold hover:bg-red-800 transition cursor-pointer whitespace-nowrap"
           >
-            Sign Out
+            {MESSAGES.SIGN_OUT}
           </button>
         </div>
       )}

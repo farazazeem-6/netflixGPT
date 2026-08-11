@@ -1,4 +1,5 @@
 import { IMG_CDN_URL } from "../utils/Image";
+import { MESSAGES } from "../utils/message";
 
 function MovieCard({ posterPath }) {
   return (
@@ -6,7 +7,7 @@ function MovieCard({ posterPath }) {
       <img
         className="w-full h-[200px] sm:h-[230px] md:h-[260px] object-cover rounded"
         src={IMG_CDN_URL + posterPath}
-        alt="movie poster"
+        alt={MESSAGES.MOVIE_POSTER}
       />
     </div>
   );

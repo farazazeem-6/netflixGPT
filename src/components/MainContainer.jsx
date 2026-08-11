@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
+import { MESSAGES } from "../utils/message";
 
 function MainContainer() {
   const movies = useSelector((state) => state.movies?.nowPlayingMovies);
@@ -8,7 +9,7 @@ function MainContainer() {
   if (!movies || movies.length === 0) {
     return (
       <div className="w-full h-screen flex items-center justify-center bg-black">
-        <p className="text-white text-base sm:text-lg md:text-xl">Loading...</p>
+        <p className="text-white text-base sm:text-lg md:text-xl">{MESSAGES.LOADING}</p>
       </div>
     );
   }
