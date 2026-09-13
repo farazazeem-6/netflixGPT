@@ -20,5 +20,3 @@ export const SUPPORTED_LANGUAGES = [
     name: "Hindi",
   },
 ];
-
-// export const OPENAI_KEY = import.meta.env.REACT_APP_OPENAI_KEY;
