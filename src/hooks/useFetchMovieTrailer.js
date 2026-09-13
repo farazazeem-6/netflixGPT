@@ -15,7 +15,7 @@ function useFetchMovieTrailer(movieId) {
   }
   useEffect(() => {
     movieTrailer();
-  }, [movieId]);
+  });
   return null;
 }
 
